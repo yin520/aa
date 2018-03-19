@@ -1,0 +1,70 @@
+学习目标：mysql操作
+  0、插入数据
+  1、将查询结果插入新表（面试）
+  2、更新、删除
+  3、查询语句结构
+  4、limit分页语句
+  5、mysql函数
+     5.1) 聚合函数
+     5.2) 字符串函数
+     5.3) 时间日期函数
+     5.4) 数学函数
+  6、子查询
+  7、表连接
+  8、左外连接、内连接、右外连接
+ -------------------------------
+1、描述表结构
+   desc result;
+    
+2、mysql不支持check 约束 ，触发器(Trigger)--->Spring框架
+
+3、批量的添加:   --->mybatis  动态标签(<foreach>)
+   比如:
+    insert into grade(gradeID,gradeName)values
+    (4,'tcmp55班'),
+    (5,'tcmp56班'),
+    (6,'tcmp57班')
+
+4、将查询结果插入新表：
+    物美（每个季度进行盘点：  Orderinfos(50w条数据)--》查询  订单状态(已取消) 记录）
+   1）表存在：
+     INSERT INTO 新表（字段1,字段2……） 
+        SELECT字段1，字段2……
+        FROM 原表;
+
+   2）表不存在：（重点）
+     CREATE TABLE 新表（
+         SELECT 字段1，字段2
+         FROM 原表
+	 where ...
+	）;
+
+5、删除的两种方式？不同
+     delete from 表名
+    TRUNCATE TABLE 表名;
+
+    trancate 将自增列重置，表结构、约束不变，它比delete方式速度快
+
+6、查询的完整结构
+    select  列
+    from  表1，表2.。。
+    where  查询条件
+    group by   分组
+    having  对组的筛选
+    order by  列1 desc,列2 asc
+
+7、分页
+   --每页4条，第3页
+---page:第几页    page_size:每页的条数
+---limit  开始索引，每页的条数
+---开始索引=(page-1)*page_size
+
+select studentNo,subjectNo,studentResult 
+from result
+order by studentNo asc,studentResult desc
+limit  8,4
+
+ 前提：熟练业务
+
+
+ 面试：如何进行sql语句的优化
